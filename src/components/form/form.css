@@ -4,25 +4,23 @@ div {
 }
 
 .wrapper {
-  height: 525px;
+  height: 725px;
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
   background-color: #4a90e2;
 }
 
 .form-wrapper {
-  width: 87%;
+  width: 90%;
   border: 2px solid forestgreen;
   display: flex;
   flex-direction: column;
-  max-width: 80%;
   padding: 20px 40px;
-  border-radius: 6px;
+  border-radius: 20px;
   background-color: #fefefe;
-  height: 280px;
+  height: 480px;
+  margin: 50px 100px;
 }
 label {
   margin-bottom: 0.5em;
@@ -44,30 +42,35 @@ input {
 .form-wrapper textarea {
   display: block;
   margin: 10px 0;
-  width: 400px;
-  height: 90px;
+  width: 380px;
+  height: 150px;
   border: 1px solid #4a90e2;
 }
 
+.submit-btn {
+  margin-top: 28px;
+  text-align: center;
+  margin-left: -350px;
+}
 button {
   width: 130px;
   margin-right: 0.25em;
-  margin-top: 0.5em;
   padding: 0.938em;
   border: none;
   border-radius: 10px;
   background-color: #835ed8;
   color: #fefefe;
 }
+.fullName,
+.email {
+  margin-top: 10px;
+}
 
 .error {
   color: #db2269;
-  font-size: 0.5em;
+  font-size: 0.8em;
   display: relative;
 }
 .message {
-  display: block;
-  margin: 5px 0;
-  width: 800px;
-  height: 200em;
+  margin-top: 10px;
 }

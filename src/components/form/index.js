@@ -9,10 +9,16 @@ class Form extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-        fullName: null,
-        email: null,
-        message: null,
+        fullName: '',
+        email: '',
+        message: '',
         errors: {
+            fullName: '',
+            email: '',
+            message: '',
+        
+        },
+        submitErrors: {
             fullName: '',
             email: '',
             message: '',
@@ -50,12 +56,30 @@ class Form extends React.Component{
 
     handleSubmit = (e) => {
         e.preventDefault();
-        
+        const {name, value} = e.target;
+
+        let submitErrors = this.state.submitErrors;
+
+        // const fullname = ReactDOM.findDOMNode(this._nameInput).value;
+        if( this.state.fullName === ''){
+            
+            submitErrors.fullName = 'Enter your Name';
+           
+        }
+        if( this.state.email === ''){
+            
+            submitErrors.email = 'Enter your email';
+            console.log(this.state)
+        }
+        this.setState({submitErrors, [name]: value}, ()=>{
+            console.log(submitErrors)
+        })
     }
 
 
     render() {
         const {errors} = this.state;
+        const {submitErrors} = this.state;
         return (
                 <div className="wrapper">  
                     <div className="form-wrapper">
@@ -63,15 +87,18 @@ class Form extends React.Component{
 
                         <form onSubmit={this.handleSubmit}>
                             <div className='email'>
-                                <label htmlFor="email"> Email :</label>
-                                <input type='email' name='email' onChange={this.handleChange}/>
+                                <label htmlFor="email"> Email :</label> <br/>
+                                <input  type='email' name='email' onChange={this.handleChange}/>
                                 {errors.email.length > 0 && <span className='error'>{errors.email}</span>}
+                                <span className='error'>{submitErrors.email}</span>
                             </div>
                            
                             <div className='fullName'>
-                               <label htmlFor="fullName"> Name :</label>
-                               <input type="text" name="fullName" onChange={this.handleChange}/>
+                               <label htmlFor="fullName"> Name :</label> <br/>
+                               <input
+                                type="text" name="fullName" onChange={this.handleChange}/>
                                {errors.fullName.length > 0 && <span className='error'>{errors.fullName}</span>}
+                                <span className='error'>{submitErrors.fullName}</span>
                             </div>
                             
                             <div className='message'>
@@ -79,8 +106,8 @@ class Form extends React.Component{
                                 <textarea type="text" name="message" onChange={this.handleChange}></textarea>
                                 {errors.message.length > 0 && <span className='error'>{errors.message}</span>}
                             </div>
-                            <div className='submit'>
-                                <button> Submit!</button>
+                            <div className='submit-btn'>
+                                <button type="submit" onClick={this.handleSubmit}> Submit!</button>
                             </div>
 
                         </form>
